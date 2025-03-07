@@ -1,29 +1,9 @@
 import type { Config } from 'tailwindcss';
-import fs from 'fs';
-import path from 'path';
-
-console.log('DEBUG: Loading Tailwind config...');
-
-// Debug function to check content files
-function checkContentFiles(patterns: string[]) {
-  patterns.forEach(pattern => {
-    const dir = pattern.split('/*')[0];
-    try {
-      const files = fs.readdirSync(path.join(process.cwd(), dir));
-      console.log(`Files in ${dir}:`, files);
-    } catch (e) {
-      console.log(`Error reading ${dir}:`, e);
-    }
-  });
-}
 
 const config: Config = {
   darkMode: 'class',
   content: [
     './src/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -65,14 +45,5 @@ const config: Config = {
     },
   ],
 };
-
-// Debug output
-console.log('DEBUG: Tailwind config loaded with:', {
-  contentPaths: config.content,
-  themeExtensions: Object.keys(config.theme?.extend || {}),
-  darkMode: config.darkMode,
-});
-
-checkContentFiles(config.content as string[]);
 
 export default config; 
