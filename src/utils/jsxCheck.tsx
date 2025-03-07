@@ -1,16 +1,13 @@
 import React from 'react';
 
-export const TestJSXComponent = () => {
-  try {
-    console.log('=== JSX Runtime Check ===');
-    console.log('JSX Runtime:', {
-      jsxRuntime: process.env.__NEXT_REACT_ROOT,
-      jsxSource: React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED?.ReactSharedInternals?.ReactCurrentOwner,
-    });
-    
-    return <div>JSX Test Component</div>;
-  } catch (error) {
-    console.error('JSX runtime check failed:', error);
-    return null;
-  }
-}; 
+export const JSXCheck: React.FC = () => {
+  console.log('JSX Runtime:', {
+    jsxRuntime: process.env.__NEXT_REACT_ROOT,
+    reactVersion: React.version,
+    isDevelopment: process.env.NODE_ENV === 'development'
+  });
+  
+  return <div>JSX Test Component</div>;
+};
+
+export default JSXCheck; 

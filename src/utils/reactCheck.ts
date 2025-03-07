@@ -1,12 +1,14 @@
-import * as ReactAll from 'react';
+import React from 'react';
 
 export const checkReactExports = () => {
   console.log('=== React Exports Check ===');
   console.log({
-    availableExports: Object.keys(ReactAll),
-    hasCreateElement: 'createElement' in ReactAll,
-    hasUseEffect: 'useEffect' in ReactAll,
-    reactVersion: ReactAll.version,
-    isDevRuntime: process.env.NODE_ENV === 'development'
+    version: React.version,
+    environment: process.env.NODE_ENV,
+    isClient: typeof window !== 'undefined',
+    nextConfig: {
+      reactRoot: process.env.__NEXT_REACT_ROOT,
+      resolveMode: process.env.__NEXT_RESOLVE_MODE
+    }
   });
 }; 
