@@ -1,24 +1,25 @@
-import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { ClientLayout } from "@/components/ClientLayout";
+import { metadata } from "./metadata";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space",
+});
 
-export const metadata: Metadata = {
-  title: "Stamp",
-  description: "Connect directly with your fans",
-};
+export { metadata };
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans bg-gradient-to-b from-gray-900 to-black text-white min-h-screen`}>
-        {children}
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <body>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
